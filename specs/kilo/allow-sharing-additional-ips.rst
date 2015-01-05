@@ -299,6 +299,7 @@ References
 
 [1] AWS currently using shared IPs:
 https://aws.amazon.com/articles/2127188135977316
+
 [2] Allowed Address Pairs:
 `http://docs.openstack.org/api/openstack-network/2.0/content/\
 allowed_address_pair_ext.html`
