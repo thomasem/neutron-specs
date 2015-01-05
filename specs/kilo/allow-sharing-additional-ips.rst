@@ -156,9 +156,34 @@ Alternatives
 
 Floating IPs and/or load balancers can be used for similar configurations to
 satisfy some use cases, but not all. Shared IPs specifically provide us with an
-easy way to have an active-passive setup.  Could you elaborate here?  Is
-active-passive something that lbaas doesn't/won't support?  Why is a floating
-ip not sufficient for this use case?
+easy way to have an active-passive setup. There is also an existing
+'allowed-address-pairs' extension[2] which has some short-comings relative to
+this specification. This leaves a question of whether we can take the existing
+extension and modify, or if this spec lays out the desired approach going
+forward for Neutron.
+
+Load balancers
+~~~~~~~~~~~~~~
+
+The main issue here is that witout a shared IP at some level in the stack, even
+if you put your application behind a load balancer, there is a single point of
+failure scenario.
+
+Floating IPs
+~~~~~~~~~~~~
+
+Floating IPs solve a different problem and in order to share a floating IP
+between multiple nodes, you'd have to either orchestrate updating the mapping
+that supports floating IPs on failover, or you'd have to back the floating IP
+with a shared internal IP, which would then require a shared IP solution
+anyway.
+
+Allowed Address Pairs extension
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The one thing not supported here is allocation. It appears that one has to
+create a dummy port to allocate an address, and then set that address as
+allowed on N other ports.
 
 Implementation
 ==============
